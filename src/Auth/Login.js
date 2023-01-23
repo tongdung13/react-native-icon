@@ -10,10 +10,21 @@ import {
   View,
 } from 'react-native';
 import {api_login} from './api_login';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [rightIcon, setRightIcon] = useState('eye');
+  const togglePasswordVisibility = () => {
+    setPasswordShow(passwordShow ? false : true);
+    if (passwordShow == false) {
+      setRightIcon('eye-slash');
+    } else {
+      setRightIcon('eye');
+    }
+  };
 
   const onSubmit = () => {
     api_login({
@@ -37,21 +48,33 @@ const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Login</Text>
-      <Text style={styles.label}>User Name</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={newEmail => setEmail(newEmail)}
-        value={email}
-      />
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={newPassword => setPassword(newPassword)}
-        value={password}
-        autoCorrect={false}
-        secureTextEntry={true}
-        textContentType="password"
-      />
+      <View>
+        <Text style={styles.label}>User Name</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={newEmail => setEmail(newEmail)}
+          value={email}
+        />
+      </View>
+
+      <View style={styles.textBoxParent}>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={newPassword => setPassword(newPassword)}
+          value={password}
+          autoCorrect={false}
+          secureTextEntry={passwordShow ? false : true}
+          textContentType="password"
+        />
+        <TouchableOpacity
+          onPress={() => togglePasswordVisibility()}
+          activeOpacity={0.8}
+          style={styles.visibilityBtn}>
+          <Icon name={rightIcon} fontSize={20} />
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity onPress={() => onSubmit()} style={styles.button}>
         <Text style={styles.submit}>Login</Text>
       </TouchableOpacity>
@@ -95,6 +118,19 @@ const styles = StyleSheet.create({
   submit: {
     fontSize: 20,
     color: 'white',
+  },
+  textBoxParent: {
+    justifyContent: 'center',
+  },
+  visibilityBtn: {
+    position: 'absolute',
+    right: 19,
+    bottom: 11,
+    zIndex: 100,
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
