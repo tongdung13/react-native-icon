@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {blog_detail} from './api_blog';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -30,12 +37,22 @@ export const BlogDetail = ({route, navigation}) => {
           />
         </TouchableOpacity>
       </View>
-      <Image style={styles.image} source={{uri: blogs.image}} />
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.images}>
+          <Image style={styles.image} source={{uri: blogs.image}} />
+        </View>
+        <View >
+          <Text style={styles.text}>{blogs.content}</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   header: {
     backgroundColor: '#FF0000',
     justifyContent: 'center',
@@ -46,10 +63,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
   },
+  images: {
+    padding: 10,
+  },
   image: {
-    width: 200,
+    width: 'auto',
     height: 200,
-    marginTop: 80,
+    marginTop: 10,
   },
   button: {
     position: 'absolute',
@@ -59,5 +79,9 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    padding: 10,
+    fontSize: 22,
   },
 });
