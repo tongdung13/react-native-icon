@@ -71,7 +71,7 @@ const Login = ({navigation}) => {
           onPress={() => togglePasswordVisibility()}
           activeOpacity={0.8}
           style={styles.visibilityBtn}>
-          <Icon name={rightIcon} fontSize={20} />
+          <Icon name={rightIcon} fontSize={35} />
         </TouchableOpacity>
       </View>
 
@@ -124,11 +124,11 @@ const styles = StyleSheet.create({
   },
   visibilityBtn: {
     position: 'absolute',
-    right: 19,
-    bottom: 11,
+    right: 9,
+    bottom: 9,
     zIndex: 100,
-    width: 20,
-    height: 20,
+    width: 25,
+    height: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },

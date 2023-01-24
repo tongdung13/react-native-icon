@@ -31,12 +31,17 @@ const Blog = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
+        <Text style={styles.header}>Blog Screen</Text>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.button}>
-          <Icon name="chevron-left" size={15} color="white" style={styles.icon_header} />
+          <Icon
+            name="chevron-left"
+            size={15}
+            color="white"
+            style={styles.icon_header}
+          />
         </TouchableOpacity>
-        <Text style={styles.header}>Blog Screen</Text>
       </View>
       {Array.isArray(blogs) &&
         blogs.map((data, index) => {
@@ -77,6 +82,7 @@ styles = StyleSheet.create({
   },
   title: {
     backgroundColor: '#FF0000',
+    justifyContent: 'center',
   },
   row: {
     flexDirection: 'column',
@@ -107,7 +113,15 @@ styles = StyleSheet.create({
     left: 130,
     top: 35,
   },
- 
+  button: {
+    position: 'absolute',
+    bottom: 7,
+    zIndex: 100,
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default Blog;
