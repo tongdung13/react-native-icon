@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
   Image,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,6 +13,22 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const BlogDetail = ({route, navigation}) => {
   const [blogs, setBlogs] = useState([]);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    const id = route.params;
+    blog_detail(id)
+      .then(response => {
+        setBlogs(response.data.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
   useEffect(() => {
     const id = route.params;
     blog_detail(id)
@@ -37,11 +54,15 @@ export const BlogDetail = ({route, navigation}) => {
           />
         </TouchableOpacity>
       </View>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        style={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <View style={styles.images}>
           <Image style={styles.image} source={{uri: blogs.image}} />
         </View>
-        <View >
+        <View>
           <Text style={styles.text}>{blogs.content}</Text>
         </View>
       </ScrollView>
