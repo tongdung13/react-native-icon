@@ -52,7 +52,7 @@ const Blog = ({navigation}) => {
               <View style={styles.row}>
                 <Image style={styles.image} source={{uri: data.image}} />
                 <Text style={styles.title1}>{data.title}</Text>
-                <Text style={styles.content}>{data.content}</Text>
+                <Text style={styles.content}>{data.content.slice(0, 50)}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -112,6 +112,7 @@ styles = StyleSheet.create({
     position: 'absolute',
     left: 130,
     top: 35,
+    right: 5,
   },
   button: {
     position: 'absolute',
