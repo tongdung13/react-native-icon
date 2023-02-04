@@ -54,11 +54,11 @@ const Blog = ({navigation}) => {
       <View style={styles.title}>
         <Text style={styles.header}>Blog Screen</Text>
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('Drawer')}
           style={styles.button}>
           <Icon
-            name="chevron-left"
-            size={15}
+            name="navicon"
+            size={25}
             color="white"
             style={styles.icon_header}
           />
@@ -152,6 +152,9 @@ styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  icon_header: {
+    paddingLeft: 5,
+  }
 });
 
 export default Blog;
