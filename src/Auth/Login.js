@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState} from 'react';
 // import {Controller, useForm} from 'react-hook-form';

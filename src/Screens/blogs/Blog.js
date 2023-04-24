@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {
   Alert,
@@ -90,7 +91,7 @@ const Blog = ({navigation}) => {
   );
 };
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -154,7 +155,7 @@ styles = StyleSheet.create({
   },
   icon_header: {
     paddingLeft: 5,
-  }
+  },
 });
 
 export default Blog;

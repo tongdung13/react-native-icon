@@ -1,3 +1,5 @@
+/* eslint-disable jsx-quotes */
+/* eslint-disable prettier/prettier */
 // Example to Use React Native Vector Icons
 // https://aboutreact.com/react-native-vector-icons/
 
